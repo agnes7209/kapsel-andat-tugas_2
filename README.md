@@ -8,3 +8,12 @@ schemas.py
         tidak error saat .com tidak ada.
         perlu pengembangan
     
+read.py 
+    @router.get("/users/{user_id}", response_model=ResponseModel) 
+    async def read_user(
+        user_id: str,
+        role: str = Header(...),
+        user_id_confirmed: Optional[str] = Header(None)
+    )
+        kekurangannya, staff bisa sajah memasukan user_id secara asal-asalan dan mengisi role admin. 
+        ide pengembangan: user juga wajib mengisi password 

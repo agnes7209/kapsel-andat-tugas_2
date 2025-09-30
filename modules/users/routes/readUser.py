@@ -7,6 +7,7 @@ router = APIRouter()
 # Simulasi database (harus sama dengan createUser.py)
 users_db = []
 
+# Perintah agar hanya admin yang dapat melihat semua akun yang telah dibuat
 def verify_admin(role: str):
     if role != "admin":
         raise HTTPException(status_code=403, detail="Not enough permissions")
@@ -25,13 +26,13 @@ async def read_all_users(role: str = Header(...)):
 async def read_user(
     user_id: str,
     role: str = Header(...),
-    x_user_id: Optional[str] = Header(None)
+    user_id_confirmed: Optional[str] = Header(None)
 ):
     user = next((u for u in users_db if u.id == user_id), None)
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     
-    if role == "staff" and user.id != x_user_id:
+    if role == "staff" and user.id != user_id_confirmed:
         raise HTTPException(status_code=403, detail="Not enough permissions")
     
     return ResponseModel(
