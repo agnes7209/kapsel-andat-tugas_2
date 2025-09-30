@@ -15,5 +15,11 @@ read.py
         role: str = Header(...),
         user_id_confirmed: Optional[str] = Header(None)
     )
-        kekurangannya, staff bisa sajah memasukan user_id secara asal-asalan dan mengisi role admin. 
-        ide pengembangan: user juga wajib mengisi password 
+        kekurangannya, staff bisa sajah memasukan user_id secara asal-asalan untuk role admin. 
+        ide pengembangan: semua user juga wajib mengisi password 
+
+update.py
+        perlu ditambahkan syarat mengisi password
+        
+delete.py
+        perlu ditambahkan syarat mengisi password
